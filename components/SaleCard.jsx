@@ -22,7 +22,7 @@ const SaleCard = ({ img, title, price }) => {
         <h3 className="font-black text-[32px] leading-[37px] pb-2 text-text inline-block">
           {title}
         </h3>
-        <span className="inline-block pb-6 font-montserrat text-text/50">
+        <span className="block pb-6 font-montserrat text-text/50">
           R$ {price}
         </span>
         <button className="flex items-center gap-[26px] text-yellow font-montserrat cursor-pointer">
