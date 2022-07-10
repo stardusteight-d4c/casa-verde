@@ -5,6 +5,7 @@ import { FiMousePointer } from 'react-icons/fi'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FiTruck } from 'react-icons/fi'
 import SaleCard from '../components/SaleCard'
+import { products } from '../data'
 
 export default function Home() {
   return (
@@ -89,15 +90,22 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-[44px] mx-[100px]">
+        <section className="mt-[44px] mx-auto md:mx-[100px]">
           <div className="text-center">
             <span className="font-montserrat text-text/50 text-[22px]">
               Conheça nossas
             </span>
             <h3 className="font-black text-[82px] text-text">ofertas</h3>
           </div>
-          <div className='grid grid-cols-3 grid-rows-2 gap-[30px]'>
-            <SaleCard title="Ajuga reptans" img="/assets/images/plants/produto1.png" price="20,00" />
+          <div className="md:grid grid-cols-3 grid-rows-2 gap-[30px] m-auto max-w-[1166px]">
+            {products.map((product) => (
+              <SaleCard
+                key={product.id}
+                title={product.title}
+                img={product.img}
+                price={product.price}
+              />
+            ))}
           </div>
         </section>
       </main>
