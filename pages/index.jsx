@@ -4,6 +4,7 @@ import { HiOutlineMail } from 'react-icons/hi'
 import { FiMousePointer } from 'react-icons/fi'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FiTruck } from 'react-icons/fi'
+import SaleCard from '../components/SaleCard'
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
 
       <main>
         <section className="relative grid-cols-2 md:grid h-[100vh] md:h-[880px]">
-          <div className="md:mt-[80px] 2xl:ml-[358px] mt-[34px] ml-4 md:ml-[120px] col-span-1">
+          <div className="md:mt-[80px] 2xl:ml-[358px] mt-[34px] ml-4 md:ml-[100px] col-span-1">
             <p className="font-montserrat text-text/50 text-[22px]">
               Sua casa com as
             </p>
@@ -85,6 +86,18 @@ export default function Home() {
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="mt-[44px] mx-[100px]">
+          <div className="text-center">
+            <span className="font-montserrat text-text/50 text-[22px]">
+              Conheça nossas
+            </span>
+            <h3 className="font-black text-[82px] text-text">ofertas</h3>
+          </div>
+          <div className='grid grid-cols-3 grid-rows-2 gap-[30px]'>
+            <SaleCard title="Ajuga reptans" img="/assets/images/plants/produto1.png" price="20,00" />
           </div>
         </section>
       </main>

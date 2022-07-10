@@ -5,7 +5,7 @@ import { FiShoppingCart } from 'react-icons/fi'
 
 const Menu = () => {
   return (
-    <nav className="mx-4 2xl:mx-[358px] md:mx-[120px] mt-[18px] flex justify-between items-center">
+    <nav className="mx-4 2xl:mx-[358px] md:mx-[100px] mt-[18px] flex justify-between items-center">
       <div>
         <Image
           src="/assets/vector/logo.svg"
