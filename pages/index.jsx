@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import { HiOutlineMail } from 'react-icons/hi'
 
 export default function Home() {
   return (
@@ -23,9 +23,16 @@ export default function Home() {
             torná-lo uma pessoa mais feliz no seu dia a dia. Entre com seu
             e-mail e assine nossa newsletter para saber das novidades da marca.
           </p>
-          <div className='flex items-center'>
-            <input type="email" placeholder="Insira seu e-mail" />
-            <button>Assinar newsletter</button>
+          <div className="relative flex items-center bg-white font-montserrat shadow-custom-shadow mt-9">
+          <HiOutlineMail size={24} className="absolute left-5 text-text/50" />
+            <input
+              type="email"
+              placeholder="Insira seu e-mail"
+              className="w-[65%] text-text/50py-7 pl-14 focus:outline-none"
+            />
+            <button className="px-5 w-[35%] font-bold text-center text-white bg-yellow py-7">
+              Assinar newsletter
+            </button>
           </div>
         </div>
 

@@ -9,6 +9,9 @@ module.exports = {
       sans: 'Elsie Swash Caps, cursive',
       montserrat: 'Montserrat, sans-serif'
     },
+    boxShadow: {
+      "custom-shadow": "10px 10px 30px #0000000f",
+    },
     extend: {
       backgroundImage: {
         background: 'url("/assets/vector/background.svg")',
