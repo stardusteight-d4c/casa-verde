@@ -5,8 +5,8 @@ import { FiPlay } from 'react-icons/fi'
 
 const VideoCard = ({ img, title, date }) => {
   return (
-    <div className="cursor-pointer">
-      <div className="w-[278px] h-[252px] relative shadow-custom-shadow">
+    <div className="duration-300 cursor-pointer hover:scale-105">
+      <div className="min-w-[278px] h-[252px] relative shadow-custom-shadow">
         <Image
           src={img}
           alt="/"

@@ -143,7 +143,7 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col items-start gap-1">
                   <span className="text-text">Juliana Ferraz</span>
-                  <span>Cliente desde 2018</span>
+                  <span>Cliente desde 2020</span>
                 </div>
               </div>
             </div>

@@ -17,23 +17,23 @@ const Menu = () => {
       <div>
         <FiShoppingCart size={28} className="flex text-yellow md:hidden" />
         <ul className="hidden gap-4 md:flex font-montserrat">
-          <li className="leading-5 duration-300 cursor-pointer fo hover:scale-105 text-text">
+          <li className="leading-5 duration-300 cursor-pointer hover:scale-105 text-text">
             Como fazer
           </li>
           <div className="after:content-['/']" />
-          <li className="leading-5 duration-300 cursor-pointer fo hover:scale-105 text-text">
+          <li className="leading-5 duration-300 cursor-pointer hover:scale-105 text-text">
             Ofertas
           </li>
           <div className="after:content-['/']" />
-          <li className="leading-5 duration-300 cursor-pointer fo hover:scale-105 text-text">
+          <li className="leading-5 duration-300 cursor-pointer hover:scale-105 text-text">
             Depoimentos
           </li>
           <div className="after:content-['/']" />
-          <li className="leading-5 duration-300 cursor-pointer fo hover:scale-105 text-text">
+          <li className="leading-5 duration-300 cursor-pointer hover:scale-105 text-text">
             Vídeos
           </li>
           <div className="after:content-['/']" />
-          <li className="ml-5 leading-5 duration-300 cursor-pointer fo hover:scale-105 text-text">
+          <li className="ml-5 leading-5 duration-300 cursor-pointer hover:scale-105 text-text">
             Meu carrinho
           </li>
         </ul>
