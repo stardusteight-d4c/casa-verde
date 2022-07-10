@@ -10,35 +10,35 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section className="relative grid grid-cols-2 h-[110vh]">
-        <div className="mt-[140px] ml-[120px] col-span-1">
+      <section className="relative grid-cols-2 md:grid">
+        <div className="md:mt-[80px] 2xl:ml-[358px] mt-[34px] ml-4 md:ml-[120px] col-span-1">
           <p className="font-montserrat text-text/50 text-[22px]">
             Sua casa com as
           </p>
-          <h1 className="mb-6 font-black text-[82px] text-text font-sans leading-[94px]">
+          <h1 className="mb-6 font-black text-[32px] md:text-[82px] text-text font-sans leading-[36px] md:leading-[94px]">
             melhores plantas
           </h1>
-          <p className="font-normal font-montserrat text-text/50 leading-[26px] pr-6">
+          <p className="w-[200px] md:w-auto font-normal font-montserrat text-text/50 leading-[26px] pr-6">
             Encontre aqui uma vasta seleção de plantas para decorar a sua casa e
             torná-lo uma pessoa mais feliz no seu dia a dia. Entre com seu
             e-mail e assine nossa newsletter para saber das novidades da marca.
           </p>
-          <div className="relative flex items-center bg-white font-montserrat shadow-custom-shadow mt-9">
-          <HiOutlineMail size={24} className="absolute left-5 text-text/50" />
+          <div className="relative items-center block md:bg-white md:flex font-montserrat shadow-custom-shadow mt-9">
+            <HiOutlineMail size={24} className="absolute top-7 md:top-1/3 left-5 text-text/50" />
             <input
               type="email"
               placeholder="Insira seu e-mail"
-              className="w-[65%] text-text/50py-7 pl-14 focus:outline-none"
+              className="mb-4 md:mb-0 w-[95%] md:w-[65%] text-text/50 py-7 pl-14 focus:outline-none"
             />
-            <button className="px-5 w-[35%] font-bold text-center text-white bg-yellow py-7">
+            <button className="px-5 w-[95%] md:w-[35%] font-bold text-center text-white bg-yellow py-7">
               Assinar newsletter
             </button>
           </div>
         </div>
 
         <div className="col-span-1">
-          <div className='absolute -top-20 -right-20 bg-[url("/assets/vector/paint.svg")] w-[850px] h-[1150px] 2xl:w-[1009px] 2xl:h-[1087px] bg-no-repeat -z-20 bg-contain' />
-          <div className='absolute -top-24 right-48 bg-[url("/assets/images/heroImage.png")] w-[787px] h-[1183px] bg-no-repeat -z-10 bg-contain' />
+          <div className='absolute -top-5 md:-top-20 right-[-720px] 2xl:-right-16 md:-right-28 bg-[url("/assets/vector/paint.svg")] w-[850px] h-[1150px] 2xl:w-[1009px] 2xl:h-[1087px] bg-no-repeat -z-20 bg-contain' />
+          <div className='absolute right-0 top-36 md:-top-24 2xl:right-[400px] md:right-32 bg-[url("/assets/images/heroImage.png")] w-[226px] md:w-[787px] h-[340px] md:h-[1183px] bg-no-repeat -z-10 bg-contain' />
         </div>
       </section>
     </div>

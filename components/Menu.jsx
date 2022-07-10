@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
 
+import { FiShoppingCart } from 'react-icons/fi'
+
 const Menu = () => {
   return (
-    <nav className="mx-[120px] mt-[18px] flex justify-between items-center">
+    <nav className="mx-4 2xl:mx-[358px] md:mx-[120px] mt-[18px] flex justify-between items-center">
       <div>
         <Image
           src="/assets/vector/logo.svg"
@@ -13,7 +15,8 @@ const Menu = () => {
         />
       </div>
       <div>
-        <ul className="flex gap-4 font-montserrat">
+        <FiShoppingCart size={28} className="flex text-yellow md:hidden" />
+        <ul className="hidden gap-4 md:flex font-montserrat">
           <li className="leading-5 duration-300 cursor-pointer fo hover:scale-105 text-text">
             Como fazer
           </li>
