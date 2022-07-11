@@ -14,7 +14,7 @@ import { cmsService } from '../cms/cmsService'
 import Link from 'next/link'
 
 export async function getStaticProps() {
-  const indexFeedbackQuery = `
+  const feedbackQuery = `
   query {
     allFeedbackContents(orderBy: _createdAt_ASC) {
       id
@@ -28,18 +28,38 @@ export async function getStaticProps() {
     }
   }`
 
-  const { data } = await cmsService({
-    query: indexFeedbackQuery,
+  const productQuery = `
+  query {
+    allProductContents(orderBy: _createdAt_ASC) {
+      id
+      title
+      image {
+        url
+      }
+      price
+    }
+  }  
+  `
+
+  const feedbackResponse = await cmsService({
+    query: feedbackQuery,
+  })
+
+  const productResponse = await cmsService({
+    query: productQuery,
   })
 
   return {
     props: {
-      cmsContent: data,
+      cmsFeedbackContent: feedbackResponse,
+      cmsProductContent: productResponse,
     },
   }
 }
 
-export default function Home({ cmsContent }) {
+export default function Home({ cmsFeedbackContent, cmsProductContent }) {
+  console.log(cmsProductContent);
+  // const cmsProtucts = cmsProductContent
   return (
     <>
       <Head>
@@ -136,13 +156,13 @@ export default function Home({ cmsContent }) {
             <h3 className="font-black text-[82px] text-text">ofertas</h3>
           </div>
           <div className="md:grid grid-cols-3 grid-rows-2 flex flex-col items-center gap-4  md:gap-[30px] m-auto max-w-[1166px]">
-            {products.map((product) => (
+            {cmsProductContent.allProductContents.map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
                 <a>
                   <SaleCard
                     key={product.id}
                     title={product.title}
-                    img={product.img}
+                    img={product.image.url}
                     price={product.price}
                   />
                 </a>
@@ -152,10 +172,10 @@ export default function Home({ cmsContent }) {
         </section>
 
         <Feedbacks
-          img={cmsContent.allFeedbackContents[0].image.url}
-          feedback={cmsContent.allFeedbackContents[0].feedback}
-          client={cmsContent.allFeedbackContents[0].client}
-          date={cmsContent.allFeedbackContents[0].date}
+          img={cmsFeedbackContent.allFeedbackContents[0].image.url}
+          feedback={cmsFeedbackContent.allFeedbackContents[0].feedback}
+          client={cmsFeedbackContent.allFeedbackContents[0].client}
+          date={cmsFeedbackContent.allFeedbackContents[0].date}
         />
 
         <section

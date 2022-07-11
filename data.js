@@ -1,37 +1,37 @@
 // INDEX
 export const products = [
   {
-    id: 1,
+    id: 37637818,
     title: 'Ajuga reptans',
     img: '/assets/images/plants/produto1.png',
     price: '22,00',
   },
   {
-    id: 2,
+    id: 37637820,
     title: 'Cordyline fruticosa',
     img: '/assets/images/plants/produto2.png',
-    price: '20,00',
+    price: '45,00',
   },
   {
-    id: 3,
+    id: 37637822,
     title: 'Crassula ovata',
     img: '/assets/images/plants/produto3.png',
     price: '22,00',
   },
   {
-    id: 4,
+    id: 37637824,
     title: 'Cyperus rotundus',
     img: '/assets/images/plants/produto4.png',
     price: '22,00',
   },
   {
-    id: 5,
+    id: 37637826,
     title: 'Delairea odorata',
     img: '/assets/images/plants/produto5.png',
     price: '22,00',
   },
   {
-    id: 6,
+    id: 37637830,
     title: 'Datura metel',
     img: '/assets/images/plants/produto6.png',
     price: '22,00',

@@ -1,24 +1,23 @@
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { cmsService } from '../../cms/cmsService'
 import Feedbacks from '../../components/Feedbacks'
 import { products } from '../../data'
 
 
-export async function getStaticPaths() {
+export async function getStaticPaths({}) {
   const paths = products.map((product) => {
     return { params:  { slug: `${product.id}` } }
   })
 
   return {
     paths: paths,
-    fallback: false, // false or 'blocking'
+    fallback: false, 
   }
 }
 
 export async function getStaticProps(ctx) {
   console.log(ctx.params.slug)
-  const indexFeedbackQuery = `
+  const FeedbackQuery = `
   query {
     allFeedbackContents(orderBy: _createdAt_ASC) {
       id
@@ -32,37 +31,53 @@ export async function getStaticProps(ctx) {
     }
   }`
 
-  const { data } = await cmsService({
-    query: indexFeedbackQuery,
+  const ProductQuery = `
+    query{
+      allProductContents(orderBy: _createdAt_ASC) {
+        id
+        title
+        image {
+          url
+        }
+        price
+      }
+    }
+  `
+
+  const feedback = await cmsService({
+    query: FeedbackQuery,
+  })
+
+  const product = await cmsService({
+    query: ProductQuery,
   })
 
   return {
     props: {
-      cmsContent: data,
+      cmsFeedbackContent: feedback,
+      cmsProductContent: product,
       slug: ctx.params.slug,
     },
   }
 }
 
 const Product = (props) => {
-  const router = useRouter()
-  const { slug } = router.query
+  // const router = useRouter()
+  // const { slug } = router.query
 
   return (
     <main>
-      <section className="overflow-hidden relative md:h-[90vh] px-[16px] md:px-0 overflow-y-hidden md:grid grid-cols-2 gap-[250px] md:pr-20">
+      <section className="relative md:h-[90vh] px-[16px] md:px-0 md:grid grid-cols-2 gap-[250px] md:pr-20">
         <div className="col-span-1">
           <div className="w-[1038px] absolute bottom-[-550px] left-[-200px] bg-no-repeat h-[1038px] hidden md:block bg-[url('/assets/vector/paintProduct.svg')] -z-20" />
           <div
-            className="md:w-[900px] w-[430px] h-[285px] md:h-[600px] absolute bottom-40 left-0 md:bottom-0 md:left-4 bg-cover bg-no-repeat -z-10"
-            style={{
-              backgroundImage: `url('/assets/images/plants/product2info.png')`,
-            }}
+            className="md:w-[900px] w-[430px] h-[285px] md:h-[600px] absolute bottom-40 left-0 md:bottom-0 bg-contain bg-no-repeat -z-10"
+            style={{ backgroundImage: `url(${products[props.slug].img})` }}
           />
         </div>
         <div className="col-span-1 pt-[80px]">
           <h1 className="font-black text-[32px] md:text-[82px] md:leading-[82px]">
-            Cordyline fruticosa
+            {products[props.slug - 1].title}
           </h1>
           <span className="font-montserrat text-text/50 pt-[10px] pb-[30px] block">
             R$ 20,00

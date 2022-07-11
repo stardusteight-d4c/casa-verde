@@ -14,7 +14,5 @@ export async function cmsService({ query }) {
   })
 
   // console.log(dataContentResponse.data.allFeedbackContents);
-  return {
-    data: dataContentResponse.data,
-  }
+  return dataContentResponse.data
 }
