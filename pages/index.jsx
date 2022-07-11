@@ -1,16 +1,45 @@
 import Head from 'next/head'
 
+import SaleCard from '../components/SaleCard'
+import VideoCard from '../components/VideoCard'
+import Feedbacks from '../components/Feedbacks'
+
 import { HiOutlineMail } from 'react-icons/hi'
 import { FiMousePointer } from 'react-icons/fi'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FiTruck } from 'react-icons/fi'
 
-import SaleCard from '../components/SaleCard'
 import { products, videos } from '../data'
-import VideoCard from '../components/VideoCard'
-import Feedbacks from '../components/Feedbacks'
+import { cmsService } from '../cms/cmsService'
 
-export default function Home() {
+export async function getStaticProps() {
+  const indexFeedbackQuery = `
+  query {
+    allFeedbackContents(orderBy: _createdAt_ASC) {
+      id
+      image {
+        url
+      }
+      feedback
+      client
+      date
+      _firstPublishedAt
+    }
+  }`
+
+  const { data } = await cmsService({
+    query: indexFeedbackQuery,
+  })
+
+  return {
+    props: {
+      cmsContent: data,
+    },
+  }
+}
+
+export default function Home({ cmsContent }) {
+  console.log('cmsContent:', cmsContent.allFeedbackContents[0].client)
   return (
     <>
       <Head>
@@ -113,18 +142,10 @@ export default function Home() {
         </section>
 
         <Feedbacks
-          img="/assets/images/client1.png"
-          feedback="Nullam a orci vitae orci fringilla pulvinar sit amet quis felis.
-              Quisque vel ornare arcu. Fusce urna quam, tempus vitae vehicula
-              et, efficitur non sem. Morbi tincidunt congue lorem eu tempor.
-              Nulla bibendum ligula lorem, vel sollicitudin nibh scelerisque
-              non. Proin ut nisi congue, sodales tellus at, consectetur tellus.
-              Praesent ac elit quis purus congue bibendum. Etiam nec massa ac
-              enim vehicula maximus. Pellentesque semper fermentum maximus.
-              Integer dignissim libero felis, id tempor purus viverra non.
-              Quisque sodales non lacus ut tincidunt. Cras in venenatis leo.”"
-          client="Juliana Ferra"
-          date="Cliente desde 2020"
+          img={cmsContent.allFeedbackContents[0].image.url}
+          feedback={cmsContent.allFeedbackContents[0].feedback}
+          client={cmsContent.allFeedbackContents[0].client}
+          date={cmsContent.allFeedbackContents[0].date}
         />
 
         <section className="mt-[108px] mx-auto md:block md:mx-[100px]">
