@@ -11,6 +11,7 @@ import { FiTruck } from 'react-icons/fi'
 
 import { products, videos } from '../data'
 import { cmsService } from '../cms/cmsService'
+import Link from 'next/link'
 
 export async function getStaticProps() {
   const indexFeedbackQuery = `
@@ -39,7 +40,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ cmsContent }) {
-  console.log('cmsContent:', cmsContent.allFeedbackContents[0].client)
   return (
     <>
       <Head>
@@ -86,7 +86,10 @@ export default function Home({ cmsContent }) {
           </div>
         </section>
 
-        <section className="w-[95vw] -mt-16 md:w-auto 2xl:w-[995px] m-auto md:mx-[200px] 2xl:m-auto shadow-custom-shadow">
+        <section
+          className="w-[95vw] -mt-16 md:w-auto 2xl:w-[995px] m-auto md:mx-[200px] 2xl:m-auto shadow-custom-shadow"
+          id="como_conseguir"
+        >
           <div className="grid grid-cols-5">
             <div className="hidden md:block col-span-3 bg-[url('/assets/images/myPlant.png')] bg-cover bg-no-repeat h-[440px]"></div>
             <div className="col-span-5 bg-white md:col-span-2">
@@ -122,7 +125,10 @@ export default function Home({ cmsContent }) {
           </div>
         </section>
 
-        <section className="mt-[44px] mx-auto md:block md:mx-[100px]">
+        <section
+          className="mt-[44px] mx-auto md:block md:mx-[100px]"
+          id="ofertas"
+        >
           <div className="text-center">
             <span className="font-montserrat text-text/50 text-[22px]">
               Conheça nossas
@@ -131,12 +137,16 @@ export default function Home({ cmsContent }) {
           </div>
           <div className="md:grid grid-cols-3 grid-rows-2 flex flex-col items-center gap-4  md:gap-[30px] m-auto max-w-[1166px]">
             {products.map((product) => (
-              <SaleCard
-                key={product.id}
-                title={product.title}
-                img={product.img}
-                price={product.price}
-              />
+              <Link key={product.id} href={`/product/${product.id}`}>
+                <a>
+                  <SaleCard
+                    key={product.id}
+                    title={product.title}
+                    img={product.img}
+                    price={product.price}
+                  />
+                </a>
+              </Link>
             ))}
           </div>
         </section>
@@ -148,7 +158,10 @@ export default function Home({ cmsContent }) {
           date={cmsContent.allFeedbackContents[0].date}
         />
 
-        <section className="mt-[108px] mx-auto md:block md:mx-[100px]">
+        <section
+          className="mt-[108px] mx-auto md:block md:mx-[100px]"
+          id="videos"
+        >
           <div className="text-center">
             <span className="font-montserrat text-text/50 text-[22px]">
               Veja aqui os nossos

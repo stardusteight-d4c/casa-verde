@@ -4,7 +4,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai'
 
 const SaleCard = ({ img, title, price }) => {
   return (
-    <div className="relative w-[95vw] md:w-[368px] min-h-[180px] bg-white grid grid-cols-2 shadow-custom-shadow overflow-hidden">
+    <div className="hover:scale-105 duration-300 relative w-[95vw] md:w-[368px] min-h-[180px] bg-white grid grid-cols-2 shadow-custom-shadow overflow-hidden">
       <div className="z-10 col-span-1">
         <div className="absolute bottom-[-100px] left-[-20px] ">
           <Image
