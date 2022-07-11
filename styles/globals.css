@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 html, body {
-  @apply bg-background overflow-x-hidden 
+  @apply overflow-x-hidden 
+}
+
+body {
+  @apply bg-background 
 }
