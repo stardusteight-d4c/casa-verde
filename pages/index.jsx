@@ -58,8 +58,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({ cmsFeedbackContent, cmsProductContent }) {
-  console.log(cmsProductContent);
-  // const cmsProtucts = cmsProductContent
+  // console.log(cmsProductContent);
   return (
     <>
       <Head>

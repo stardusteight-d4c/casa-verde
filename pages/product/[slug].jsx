@@ -32,16 +32,16 @@ export async function getStaticProps(ctx) {
   }`
 
   const ProductQuery = `
-    query{
-      allProductContents(orderBy: _createdAt_ASC) {
-        id
-        title
-        image {
-          url
-        }
-        price
+  query {
+    allProductContents(filter: {id: {eq: ${ctx.params.slug}}}) {
+      id
+      title
+      image {
+        url
       }
+      price
     }
+  }
   `
 
   const feedback = await cmsService({
@@ -62,6 +62,7 @@ export async function getStaticProps(ctx) {
 }
 
 const Product = (props) => {
+  console.log(props.cmsProductContent);
   // const router = useRouter()
   // const { slug } = router.query
 
@@ -72,12 +73,12 @@ const Product = (props) => {
           <div className="w-[1038px] absolute bottom-[-550px] left-[-200px] bg-no-repeat h-[1038px] hidden md:block bg-[url('/assets/vector/paintProduct.svg')] -z-20" />
           <div
             className="md:w-[900px] w-[430px] h-[285px] md:h-[600px] absolute bottom-40 left-0 md:bottom-0 bg-contain bg-no-repeat -z-10"
-            style={{ backgroundImage: `url(${products[props.slug].img})` }}
+            style={{ backgroundImage: `url(${props.cmsProductContent.allProductContents[0].image.url})` }}
           />
         </div>
         <div className="col-span-1 pt-[80px]">
           <h1 className="font-black text-[32px] md:text-[82px] md:leading-[82px]">
-            {products[props.slug - 1].title}
+            {props.cmsProductContent.allProductContents[0].title}
           </h1>
           <span className="font-montserrat text-text/50 pt-[10px] pb-[30px] block">
             R$ 20,00
@@ -147,10 +148,10 @@ const Product = (props) => {
       </section>
 
       <Feedbacks
-        img={props.cmsContent.allFeedbackContents[1].image.url}
-        feedback={props.cmsContent.allFeedbackContents[1].feedback}
-        client={props.cmsContent.allFeedbackContents[1].client}
-        date={props.cmsContent.allFeedbackContents[1].date}
+        img={props.cmsFeedbackContent.allFeedbackContents[1].image.url}
+        feedback={props.cmsFeedbackContent.allFeedbackContents[1].feedback}
+        client={props.cmsFeedbackContent.allFeedbackContents[1].client}
+        date={props.cmsFeedbackContent.allFeedbackContents[1].date}
       /> 
     </main>
   )
