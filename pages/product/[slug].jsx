@@ -1,44 +1,50 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { cmsService } from '../../cms/cmsService'
 import Feedbacks from '../../components/Feedbacks'
-
-// async function getStaticPaths() {
-//   return {
-//     paths: [
-//       { params: { id: slug } }
-//     ],
-//     fallback: true // false or 'blocking'
-//   };
-// }
+import { products } from '../../data'
 
 
-// export async function getStaticProps() {
-//   const indexFeedbackQuery = `
-//   query {
-//     allFeedbackContents(orderBy: _createdAt_ASC) {
-//       id
-//       image {
-//         url
-//       }
-//       feedback
-//       client
-//       date
-//       _firstPublishedAt
-//     }
-//   }`
+export async function getStaticPaths() {
+  const paths = products.map((product) => {
+    return { params:  { slug: `${product.id}` } }
+  })
 
-//   const { data } = await cmsService({
-//     query: indexFeedbackQuery,
-//   })
+  return {
+    paths: paths,
+    fallback: false, // false or 'blocking'
+  }
+}
 
-//   return {
-//     props: {
-//       cmsContent: data,
-//     },
-//   }
-// }
+export async function getStaticProps(ctx) {
+  console.log(ctx.params.slug)
+  const indexFeedbackQuery = `
+  query {
+    allFeedbackContents(orderBy: _createdAt_ASC) {
+      id
+      image {
+        url
+      }
+      feedback
+      client
+      date
+      _firstPublishedAt
+    }
+  }`
 
-const Product = () => {
+  const { data } = await cmsService({
+    query: indexFeedbackQuery,
+  })
+
+  return {
+    props: {
+      cmsContent: data,
+      slug: ctx.params.slug,
+    },
+  }
+}
+
+const Product = (props) => {
   const router = useRouter()
   const { slug } = router.query
 
@@ -125,12 +131,12 @@ const Product = () => {
         </div>
       </section>
 
-      {/* <Feedbacks
-        img={cmsContent.allFeedbackContents[1].image.url}
-        feedback={cmsContent.allFeedbackContents[1].feedback}
-        client={cmsContent.allFeedbackContents[1].client}
-        date={cmsContent.allFeedbackContents[1].date}
-      /> */}
+      <Feedbacks
+        img={props.cmsContent.allFeedbackContents[1].image.url}
+        feedback={props.cmsContent.allFeedbackContents[1].feedback}
+        client={props.cmsContent.allFeedbackContents[1].client}
+        date={props.cmsContent.allFeedbackContents[1].date}
+      /> 
     </main>
   )
 }
