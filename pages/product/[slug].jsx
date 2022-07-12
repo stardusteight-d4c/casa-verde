@@ -207,18 +207,23 @@ const Product = (props) => {
             <h3 className="font-black text-[82px] text-text">similares</h3>
           </div>
           <div className="md:grid grid-cols-3 grid-rows-2 flex flex-col items-center gap-4  md:gap-[30px] m-auto max-w-[1166px]">
-            {props.cmsAllProductContent.allProductContents.map((product) => (
-              <Link key={product.id} href={`/product/${product.id}`}>
-                <a>
-                  <SaleCard
-                    key={product.id}
-                    title={product.title}
-                    img={product.image.url}
-                    price={product.price}
-                  />
-                </a>
-              </Link>
-            ))}
+            {props.cmsAllProductContent.allProductContents.map(
+              (product, index) => {
+                if (index >= 2 && index <= 4)
+                  return (
+                    <Link key={product.id} href={`/product/${product.id}`}>
+                      <a>
+                        <SaleCard
+                          key={product.id}
+                          title={product.title}
+                          img={product.image.url}
+                          price={product.price}
+                        />
+                      </a>
+                    </Link>
+                  )
+              }
+            )}
           </div>
         </section>
       </main>
