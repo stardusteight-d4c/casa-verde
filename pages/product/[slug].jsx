@@ -6,7 +6,7 @@ import Feedbacks from '../../components/Feedbacks'
 import SaleCard from '../../components/SaleCard'
 
 /* Para resolver o problema de Hydration, todos os dados que um componente renderiza
- * deve vir via props, com o getStaticProps podemos traçar a forma que os dados devem ser 
+ * devem vir via props, com o getStaticProps podemos traçar a forma que os dados devem ser 
  * rederizados na página. A lógica de randomizar um array deve ser feita em getStaticProps
  * e ser enviada via props para o componente, por isto ocorre o erro:
  * Error: Falha na hidratação porque a IU inicial não corresponde ao que foi renderizado no servidor.
