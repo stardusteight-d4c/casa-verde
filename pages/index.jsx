@@ -12,6 +12,7 @@ import { FiTruck } from 'react-icons/fi'
 import { videos } from '../data'
 import { cmsService } from '../cms/cmsService'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export async function getStaticProps() {
   const feedbackQuery = `
@@ -54,6 +55,7 @@ export async function getStaticProps() {
       cmsFeedbackContent: feedbackResponse,
       cmsProductContent: productResponse,
     },
+    revalidate: 60,
   }
 }
 

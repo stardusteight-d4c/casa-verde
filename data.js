@@ -1,25 +1,3 @@
-// INDEX
-export const products = [
-  {
-    id: 37637818,
-  },
-  {
-    id: 37637820,
-  },
-  {
-    id: 37637822,
-  },
-  {
-    id: 37637824,
-  },
-  {
-    id: 37637826,
-  },
-  {
-    id: 37637830,
-  },
-]
-
 export const videos = [
   {
     id: 1,

@@ -1,12 +1,26 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { cmsService } from '../../cms/cmsService'
 import Feedbacks from '../../components/Feedbacks'
+import SaleCard from '../../components/SaleCard'
 import { products } from '../../data'
 
 export async function getStaticPaths() {
-  // Seria possível implementar uma lista de Paths e linkar com produtos no CMS e mapea-lá aqui
-  const paths = products.map((product) => {
+  const productId = `
+    query {
+      allProductContents {
+        id
+      }
+    }`
+
+  const pathsList = await cmsService({
+    query: productId,
+  })
+
+  // console.log(pathsList);
+
+  const paths = pathsList.allProductContents.map((product) => {
     return { params: { slug: `${product.id}` } }
   })
 
@@ -18,7 +32,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(ctx) {
   // console.log(ctx.params.slug)
-  const FeedbackQuery = `
+  const feedbackQuery = `
   query {
     allFeedbackContents(orderBy: _createdAt_ASC) {
       id
@@ -32,7 +46,7 @@ export async function getStaticProps(ctx) {
     }
   }`
 
-  const ProductQuery = `
+  const productQuery = `
   query {
     allProductContents(filter: {id: {eq: ${ctx.params.slug}}}) {
       id
@@ -44,25 +58,44 @@ export async function getStaticProps(ctx) {
     }
   }`
 
-  const feedback = await cmsService({
-    query: FeedbackQuery,
+  const allProductQuery = `
+  query {
+    allProductContents(orderBy: _createdAt_ASC) {
+      id
+      title
+      image {
+        url
+      }
+      price
+    }
+  }  
+  `
+
+  const feedbackResponse = await cmsService({
+    query: feedbackQuery,
   })
 
-  const product = await cmsService({
-    query: ProductQuery,
+  const productResponse = await cmsService({
+    query: productQuery,
+  })
+
+  const allProductResponse = await cmsService({
+    query: allProductQuery,
   })
 
   return {
     props: {
-      cmsFeedbackContent: feedback,
-      cmsProductContent: product,
+      cmsFeedbackContent: feedbackResponse,
+      cmsProductContent: productResponse,
+      cmsAllProductContent: allProductResponse,
       slug: ctx.params.slug,
     },
+    revalidate: 60,
   }
 }
 
 const Product = (props) => {
-  console.log(props.cmsProductContent)
+  // console.log(props.cmsProductContent)
   // const router = useRouter()
   // const { slug } = router.query
 
@@ -89,7 +122,7 @@ const Product = (props) => {
               {props.cmsProductContent.allProductContents[0].title}
             </h1>
             <span className="font-montserrat text-text/50 pt-[10px] pb-[30px] block">
-              R$ 20,00
+              R$ {props.cmsProductContent.allProductContents[0].price}
             </span>
             <p className="font-montserrat text-text/50 pb-[30px]">
               Sed arcu risus, posuere viverra imperdiet eu, commodo interdum
@@ -162,6 +195,32 @@ const Product = (props) => {
           client={props.cmsFeedbackContent.allFeedbackContents[1].client}
           date={props.cmsFeedbackContent.allFeedbackContents[1].date}
         />
+
+        <section
+          className="mt-[44px] mx-auto md:block md:mx-[100px]"
+          id="ofertas"
+        >
+          <div className="text-center">
+            <span className="font-montserrat text-text/50 text-[22px]">
+              Conheça produtos
+            </span>
+            <h3 className="font-black text-[82px] text-text">similares</h3>
+          </div>
+          <div className="md:grid grid-cols-3 grid-rows-2 flex flex-col items-center gap-4  md:gap-[30px] m-auto max-w-[1166px]">
+            {props.cmsAllProductContent.allProductContents.map((product) => (
+              <Link key={product.id} href={`/product/${product.id}`}>
+                <a>
+                  <SaleCard
+                    key={product.id}
+                    title={product.title}
+                    img={product.image.url}
+                    price={product.price}
+                  />
+                </a>
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
     </>
   )
