@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { cmsService } from '../../cms/cmsService'
 import Feedbacks from '../../components/Feedbacks'
 import SaleCard from '../../components/SaleCard'
-import { products } from '../../data'
 
 export async function getStaticPaths() {
   const productId = `
@@ -83,15 +82,29 @@ export async function getStaticProps(ctx) {
     query: allProductQuery,
   })
 
+  const randomProducts = randomizarArray(allProductResponse.allProductContents).slice(3)
+
   return {
     props: {
       cmsFeedbackContent: feedbackResponse,
       cmsProductContent: productResponse,
       cmsAllProductContent: allProductResponse,
       slug: ctx.params.slug,
+      randomProducts: randomProducts,
     },
     revalidate: 60,
   }
+}
+
+const randomizarArray = (array) => {
+  console.log(array);
+  const copia = [...array]
+  for (let i = copia.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1))
+    ;[copia[i], copia[j]] = [copia[j], copia[i]]
+  }
+
+  return copia
 }
 
 const Product = (props) => {
@@ -99,6 +112,8 @@ const Product = (props) => {
   // const router = useRouter()
   // const { slug } = router.query
 
+  // console.log(randomizar(props.cmsAllProductContent.allProductContents)
+  // .slice(3))
   return (
     <>
       <Head>
@@ -207,23 +222,18 @@ const Product = (props) => {
             <h3 className="font-black text-[82px] text-text">similares</h3>
           </div>
           <div className="md:grid grid-cols-3 grid-rows-2 flex flex-col items-center gap-4  md:gap-[30px] m-auto max-w-[1166px]">
-            {props.cmsAllProductContent.allProductContents.map(
-              (product, index) => {
-                if (index >= 2 && index <= 4)
-                  return (
-                    <Link key={product.id} href={`/product/${product.id}`}>
-                      <a>
-                        <SaleCard
-                          key={product.id}
-                          title={product.title}
-                          img={product.image.url}
-                          price={product.price}
-                        />
-                      </a>
-                    </Link>
-                  )
-              }
-            )}
+            {props.randomProducts.map((product) => (
+              <Link key={product.id} href={`/product/${product.id}`}>
+                <a>
+                  <SaleCard
+                    key={product.id}
+                    title={product.title}
+                    img={product.image.url}
+                    price={product.price}
+                  />
+                </a>
+              </Link>
+            ))}
           </div>
         </section>
       </main>
