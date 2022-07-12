@@ -84,20 +84,29 @@ export default function Home({ cmsFeedbackContent, cmsProductContent }) {
               e-mail e assine nossa newsletter para saber das novidades da
               marca.
             </p>
-            <div className="relative items-center block md:bg-white md:flex font-montserrat shadow-custom-shadow mt-9">
-              <HiOutlineMail
-                size={24}
-                className="absolute top-7 md:top-1/3 left-5 text-text/50"
-              />
-              <input
-                type="email"
-                placeholder="Insira seu e-mail"
-                className="mb-4 md:mb-0 w-[95%] m-auto md:w-[65%] text-text/50 py-7 pl-14 focus:outline-none"
-              />
-              <button className="px-5 w-[95%] md:w-[35%] font-bold text-center text-white bg-yellow py-7">
-                Assinar newsletter
-              </button>
-            </div>
+            <form
+              action="https://getform.io/f/80521b81-06f2-46e3-9647-7e2b1b4512dd"
+              method="POST"
+            >
+              <div className="relative items-center block md:bg-white md:flex font-montserrat shadow-custom-shadow mt-9">
+                <HiOutlineMail
+                  size={24}
+                  className="absolute top-7 md:top-1/3 left-5 text-text/50"
+                />
+                <input
+                  type="email"
+                  placeholder="Insira seu e-mail"
+                  name="email"
+                  className="mb-4 md:mb-0 w-[95%] m-auto md:w-[65%] text-text/50 py-7 pl-14 focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  className="px-5 w-[95%] md:w-[35%] font-bold text-center text-white bg-yellow py-7"
+                >
+                  Assinar newsletter
+                </button>
+              </div>
+            </form>
           </div>
           <div className="col-span-1">
             <div className="absolute -top-5 md:-top-20 right-[-720px] 2xl:-right-16 md:-right-28 bg-[url('/assets/vector/paint.svg')] w-[850px] h-[1150px] 2xl:w-[1009px] 2xl:h-[1087px] bg-no-repeat -z-20 bg-contain" />
