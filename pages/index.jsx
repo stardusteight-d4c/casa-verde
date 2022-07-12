@@ -9,7 +9,7 @@ import { FiMousePointer } from 'react-icons/fi'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FiTruck } from 'react-icons/fi'
 
-import { products, videos } from '../data'
+import { videos } from '../data'
 import { cmsService } from '../cms/cmsService'
 import Link from 'next/link'
 
