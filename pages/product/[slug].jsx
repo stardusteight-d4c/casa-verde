@@ -11,6 +11,7 @@ import SaleCard from '../../components/SaleCard'
  * e ser enviada via props para o componente, por isto ocorre o erro:
  * Error: Falha na hidratação porque a IU inicial não corresponde ao que foi renderizado no servidor.
  * O servidor espera renderizar determinados dados, mas são modificados no componente.
+ * Resumindo... sempre injete os dados no componente através das props
  */
 
 export async function getStaticPaths() {
@@ -24,8 +25,6 @@ export async function getStaticPaths() {
   const pathsList = await cmsService({
     query: productId,
   })
-
-  // console.log(pathsList);
 
   const paths = pathsList.allProductContents.map((product) => {
     return { params: { slug: `${product.id}` } }
@@ -105,7 +104,6 @@ export async function getStaticProps(ctx) {
 }
 
 const randomizarArray = (array) => {
-  console.log(array);
   const copia = [...array]
   for (let i = copia.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1))
@@ -116,12 +114,9 @@ const randomizarArray = (array) => {
 }
 
 const Product = (props) => {
-  // console.log(props.cmsProductContent)
   // const router = useRouter()
   // const { slug } = router.query
 
-  // console.log(randomizar(props.cmsAllProductContent.allProductContents)
-  // .slice(3))
   return (
     <>
       <Head>
@@ -134,7 +129,7 @@ const Product = (props) => {
           <div className="col-span-1">
             <div className="w-[1038px] absolute bottom-[-550px] left-[-200px] bg-no-repeat h-[1038px] hidden md:block bg-[url('/assets/vector/paintProduct.svg')] -z-20" />
             <div
-              className="md:w-[900px] w-[430px] h-[285px] md:h-[600px] absolute bottom-40 left-0 md:bottom-0 bg-contain bg-no-repeat -z-10"
+              className="md:w-[900px] w-[430px] h-[285px] md:h-[600px] absolute bottom-40 left-[-10px] md:bottom-[-25px] bg-contain bg-no-repeat -z-10"
               style={{
                 backgroundImage: `url(${props.cmsProductContent.allProductContents[0].image.url})`,
               }}
@@ -163,7 +158,7 @@ const Product = (props) => {
           </div>
         </section>
 
-        <section className="py-8 md:py-[80px] px-4 md:px-[150px] bg-white">
+        <section className="py-8 md:py-[80px] px-4 md:px-[100px] 2xl:px-[358px] bg-white">
           <div className="grid-cols-5 md:grid">
             <div className="col-span-3 pr-[30px]">
               <h1 className="text-text font-black text-[32px] md:text-[42px] mt-4 mb-2 md:mb-8">
@@ -220,16 +215,16 @@ const Product = (props) => {
         />
 
         <section
-          className="mt-[44px] mx-auto md:block md:mx-[100px]"
+          className="mt-[100px] mb-[100px] md:mb-[170px] mx-auto md:block md:mx-[100px]"
           id="ofertas"
         >
           <div className="text-center">
             <span className="font-montserrat text-text/50 text-[22px]">
               Conheça produtos
             </span>
-            <h3 className="font-black text-[82px] text-text">similares</h3>
+            <h3 className="font-black text-[32px] md:text-[82px] text-text">similares</h3>
           </div>
-          <div className="md:grid grid-cols-3 grid-rows-2 flex flex-col items-center gap-4  md:gap-[30px] m-auto max-w-[1166px]">
+          <div className="md:grid grid-cols-3 flex flex-col items-center gap-4  md:gap-[30px] m-auto max-w-[1166px]">
             {props.randomProducts.map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
                 <a>

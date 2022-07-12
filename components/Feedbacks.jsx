@@ -4,10 +4,10 @@ const Feedbacks = ({ img, feedback, client, date }) => {
   return (
     <section className="hidden pt-[108px] md:flex 2xl:grid grid-cols-2">
       <div
-        className="min-w-[668px] 2xl:w-[850px] block 2xl:col-span-1"
+        className="md:w-[630px] 2xl:min-w-[668px] 2xl:w-[850px] block 2xl:col-span-1"
         id="depoimentos"
       >
-        <div className="w-[500px] h-[480px] 2xl:w-[638px] 2xl:h-[580px] bg-yellow relative drop-shadow-xl">
+        <div className="md:w-[450px] h-[430px] 2xl:w-[638px] 2xl:h-[580px] bg-yellow relative drop-shadow-xl">
           <div
             className="drop-shadow-xl w-[381px] 2xl:w-[481px] h-[445px] 2xl:h-[562px] bg-contain bg-no-repeat absolute top-[99px] -right-1/3"
             style={{ backgroundImage: `url(${img})` }}
