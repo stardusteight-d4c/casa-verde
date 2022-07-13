@@ -209,6 +209,7 @@ const Product = (props) => {
                 width="480px"
                 height="562px"
                 alt="Produto"
+                quality={50}
               />
             </div>
           </div>

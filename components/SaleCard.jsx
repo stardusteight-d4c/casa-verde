@@ -14,7 +14,7 @@ const SaleCard = ({ img, title, price }) => {
               alt="/"
               width="245px"
               height="327px"
-              quality={100}
+              quality={40}
               className="object-contain"
             />
           </div>

@@ -13,6 +13,7 @@ const VideoCard = ({ img, title, date }) => {
           width="278px"
           height="252px"
           className="brightness-75"
+          quality={50}
         />
         <FiPlay
           size={24}

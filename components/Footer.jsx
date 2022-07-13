@@ -19,6 +19,7 @@ const Footer = () => {
               height="42px"
               alt="Logo - Casa Verde"
               layout="fixed"
+              quality={50}
             />
           </div>
           <ul className="flex items-center gap-6 mt-5 text-yellow">
