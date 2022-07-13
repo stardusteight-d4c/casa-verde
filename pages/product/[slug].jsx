@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Fade, Slide } from 'react-reveal'
 import { cmsService } from '../../cms/cmsService'
 import Feedbacks from '../../components/Feedbacks'
 import SaleCard from '../../components/SaleCard'
 
 /* Para resolver o problema de Hydration, todos os dados que um componente renderiza
- * devem vir via props, com o getStaticProps podemos traçar a forma que os dados devem ser 
+ * devem vir via props, com o getStaticProps podemos traçar a forma que os dados devem ser
  * rederizados na página. A lógica de randomizar um array deve ser feita em getStaticProps
  * e ser enviada via props para o componente, por isto ocorre o erro:
  * Error: Falha na hidratação porque a IU inicial não corresponde ao que foi renderizado no servidor.
@@ -32,7 +33,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
@@ -89,7 +90,9 @@ export async function getStaticProps(ctx) {
     query: allProductQuery,
   })
 
-  const randomProducts = randomizarArray(allProductResponse.allProductContents).slice(3)
+  const randomProducts = randomizarArray(
+    allProductResponse.allProductContents
+  ).slice(3)
 
   return {
     props: {
@@ -128,17 +131,21 @@ const Product = (props) => {
         <section className="relative md:h-[90vh] px-[16px] md:px-0 md:grid grid-cols-2 gap-[250px] md:pr-20">
           <div className="col-span-1">
             <div className="w-[1038px] absolute bottom-[-550px] left-[-200px] bg-no-repeat h-[1038px] hidden md:block bg-[url('/assets/vector/paintProduct.svg')] -z-20" />
-            <div
-              className="md:w-[900px] w-[430px] h-[285px] md:h-[600px] absolute bottom-40 left-[-10px] md:bottom-[-25px] bg-contain bg-no-repeat -z-10"
-              style={{
-                backgroundImage: `url(${props.cmsProductContent.allProductContents[0].image.url})`,
-              }}
-            />
+            <Slide left>
+              <div
+                className="md:w-[900px] w-[430px] h-[285px] md:h-[600px] absolute bottom-40 left-[-10px] md:bottom-[-25px] bg-contain bg-no-repeat -z-10"
+                style={{
+                  backgroundImage: `url(${props.cmsProductContent.allProductContents[0].image.url})`,
+                }}
+              />
+            </Slide>
           </div>
           <div className="col-span-1 pt-[80px]">
-            <h1 className="font-black text-[32px] md:text-[82px] md:leading-[82px]">
-              {props.cmsProductContent.allProductContents[0].title}
-            </h1>
+            <Fade top>
+              <h1 className="font-black text-[32px] md:text-[82px] md:leading-[82px]">
+                {props.cmsProductContent.allProductContents[0].title}
+              </h1>
+            </Fade>
             <span className="font-montserrat text-text/50 pt-[10px] pb-[30px] block">
               R$ {props.cmsProductContent.allProductContents[0].price}
             </span>
@@ -222,7 +229,9 @@ const Product = (props) => {
             <span className="font-montserrat text-text/50 text-[22px]">
               Conheça produtos
             </span>
-            <h3 className="font-black text-[32px] md:text-[82px] text-text">similares</h3>
+            <h3 className="font-black text-[32px] md:text-[82px] text-text">
+              similares
+            </h3>
           </div>
           <div className="md:grid grid-cols-3 flex flex-col items-center gap-4  md:gap-[30px] m-auto max-w-[1166px]">
             {props.randomProducts.map((product) => (

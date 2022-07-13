@@ -12,7 +12,7 @@ import { FiTruck } from 'react-icons/fi'
 import { videos } from '../data'
 import { cmsService } from '../cms/cmsService'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { Slide } from 'react-reveal'
 
 export async function getStaticProps() {
   const feedbackQuery = `
@@ -71,49 +71,53 @@ export default function Home({ cmsFeedbackContent, cmsProductContent }) {
 
       <main>
         <section className="relative md:grid-cols-2 md:grid h-[100vh] md:h-[880px]">
-          <div className="md:mt-[80px] 2xl:ml-[358px] mt-[34px] ml-4 md:ml-[100px] col-span-1">
-            <p className="font-montserrat text-text/50 text-[22px]">
-              Sua casa com as
-            </p>
-            <h1 className="mb-6 font-black text-[32px] md:text-[82px] text-text font-sans leading-[36px] md:leading-[94px]">
-              melhores plantas
-            </h1>
-            <p className="w-[200px] md:w-auto font-normal font-montserrat text-text/50 leading-[26px] pr-6">
-              Encontre aqui uma vasta seleção de plantas para decorar a sua casa
-              e torná-lo uma pessoa mais feliz no seu dia a dia. Entre com seu
-              e-mail e assine nossa newsletter para saber das novidades da
-              marca.
-            </p>
-            <form
-              action="https://getform.io/f/80521b81-06f2-46e3-9647-7e2b1b4512dd"
-              method="POST"
-            >
-              <div className="relative items-center block md:bg-white md:flex font-montserrat shadow-custom-shadow mt-9">
-                <HiOutlineMail
-                  size={24}
-                  className="absolute top-7 md:top-1/3 left-5 text-text/50"
-                />
-                <input
-                  type="email"
-                  placeholder="Insira seu e-mail"
-                  name="email"
-                  className="mb-4 md:mb-0 w-[95%] m-auto md:w-[65%] text-text/50 py-7 pl-14 focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="px-5 w-[95%] md:w-[35%] font-bold text-center text-white bg-yellow py-7"
-                >
-                  Assinar newsletter
-                </button>
-              </div>
-            </form>
-          </div>
-          <div className="col-span-1">
-            <div className="absolute -top-5 md:-top-20 right-[-720px] 2xl:-right-16 md:-right-28 bg-[url('/assets/vector/paint.svg')] w-[850px] h-[1150px] 2xl:w-[1009px] 2xl:h-[1087px] bg-no-repeat -z-20 bg-contain" />
-            <div>
-              <div className="absolute right-0 top-36 md:-top-24 2xl:right-[400px] md:right-32 bg-[url('/assets/images/heroImage.png')] w-[226px] md:w-[787px] h-[340px] md:h-[1000px] 2xl:h-[1183px] bg-no-repeat -z-10 bg-contain" />
+          <Slide left>
+            <div className="md:mt-[80px] 2xl:ml-[358px] mt-[34px] ml-4 md:ml-[100px] col-span-1">
+              <p className="font-montserrat text-text/50 text-[22px]">
+                Sua casa com as
+              </p>
+              <h1 className="mb-6 font-black text-[32px] md:text-[82px] text-text font-sans leading-[36px] md:leading-[94px]">
+                melhores plantas
+              </h1>
+              <p className="w-[200px] md:w-auto font-normal font-montserrat text-text/50 leading-[26px] pr-6">
+                Encontre aqui uma vasta seleção de plantas para decorar a sua
+                casa e torná-lo uma pessoa mais feliz no seu dia a dia. Entre
+                com seu e-mail e assine nossa newsletter para saber das
+                novidades da marca.
+              </p>
+              <form
+                action="https://getform.io/f/80521b81-06f2-46e3-9647-7e2b1b4512dd"
+                method="POST"
+              >
+                <div className="relative items-center block md:bg-white md:flex font-montserrat shadow-custom-shadow mt-9">
+                  <HiOutlineMail
+                    size={24}
+                    className="absolute top-7 md:top-1/3 left-5 text-text/50"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Insira seu e-mail"
+                    name="email"
+                    className="mb-4 md:mb-0 w-[95%] m-auto md:w-[65%] text-text/50 py-7 pl-14 focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="px-5 w-[95%] md:w-[35%] font-bold text-center text-white bg-yellow py-7"
+                  >
+                    Assinar newsletter
+                  </button>
+                </div>
+              </form>
             </div>
-          </div>
+          </Slide>
+          <Slide right>
+            <div className="col-span-1 -z-10">
+              <div className="absolute -top-5 md:-top-20 right-[-720px] 2xl:-right-16 md:-right-28 bg-[url('/assets/vector/paint.svg')] w-[850px] h-[1150px] 2xl:w-[1009px] 2xl:h-[1087px] bg-no-repeat -z-20 bg-contain" />
+              <div>
+                <div className="absolute right-0 top-36 md:-top-24 2xl:right-[400px] md:right-32 bg-[url('/assets/images/heroImage.png')] w-[226px] md:w-[787px] h-[340px] md:h-[1000px] 2xl:h-[1183px] bg-no-repeat -z-10 bg-contain" />
+              </div>
+            </div>
+          </Slide>
         </section>
 
         <section
