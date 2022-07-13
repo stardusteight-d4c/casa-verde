@@ -110,14 +110,12 @@ export default function Home({ cmsFeedbackContent, cmsProductContent }) {
               </form>
             </div>
           </Slide>
-          <Slide right>
             <div className="col-span-1 -z-10">
               <div className="absolute -top-5 md:-top-20 right-[-720px] 2xl:-right-16 md:-right-28 bg-[url('/assets/vector/paint.svg')] w-[850px] h-[1150px] 2xl:w-[1009px] 2xl:h-[1087px] bg-no-repeat -z-20 bg-contain" />
               <div>
                 <div className="absolute right-0 top-36 md:-top-24 2xl:right-[400px] md:right-32 bg-[url('/assets/images/heroImage.png')] w-[226px] md:w-[787px] h-[340px] md:h-[1000px] 2xl:h-[1183px] bg-no-repeat -z-10 bg-contain" />
               </div>
             </div>
-          </Slide>
         </section>
 
         <section

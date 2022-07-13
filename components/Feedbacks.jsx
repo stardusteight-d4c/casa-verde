@@ -1,9 +1,7 @@
 import React from 'react'
-import { Fade } from 'react-reveal'
 
 const Feedbacks = ({ img, feedback, client, date }) => {
   return (
-    <Fade bottom>
       <section className="hidden pt-[108px] md:flex 2xl:grid grid-cols-2">
         <div
           className="md:w-[630px] 2xl:min-w-[668px] 2xl:w-[850px] block 2xl:col-span-1"
@@ -37,7 +35,6 @@ const Feedbacks = ({ img, feedback, client, date }) => {
           </div>
         </div>
       </section>
-    </Fade>
   )
 }
 
